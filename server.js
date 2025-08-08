@@ -27,7 +27,7 @@ mongoose.connect(process.env.MONGO_URI, {
   useUnifiedTopology: true,
 })
 .then(() => {
-  console.log("✅ MongoDB connected");
+  console.log("MongoDB connected");
 
   // Load routes AFTER DB connection
   const routes = require("./app/routes");
