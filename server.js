@@ -22,7 +22,7 @@ app.get("/", (req, res) => {
 
 // Load routes (if any)
 const routes = require("./app/routes");
-// app.use("/", routes);
+app.use("/", routes);
 
 // Start server
 const PORT = process.env.PORT;
