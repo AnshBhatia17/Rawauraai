@@ -1,11 +1,6 @@
-import mergeImages from "merge-images";
+const express = require("express");
+const router = express.Router();
+const ImageController = require("../controllers/imageMergerController");
 
-mergeImages(["/body.png", "/eyes.png", "/mouth.png"]).then(
-  (b64) => (document.querySelector("img").src = b64)
-);
-const mergeImages = require("merge-images");
-const Canvas = require("canvas"); // Required for Node.js usage
-
-mergeImages(["./image1.png", "./image2.png"], { Canvas: Canvas }).then((b64) =>
-  console.log(b64)
-);
+router.post("/addBg", ImageController.addBackground);
+module.exports = router;

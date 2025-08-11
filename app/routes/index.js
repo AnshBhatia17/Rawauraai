@@ -5,4 +5,5 @@ const router = express();
 router.use("/bgremove", require("./bgRemove.route"));
 router.use("/api", require("./ai.routes"))
 router.use("/api", require("./didai.routes"))
+router.use("/merge", require("./addbg.route"))
 module.exports = router;
