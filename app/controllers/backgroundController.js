@@ -1,4 +1,6 @@
 const backgroundService = require('../services/backgraoundService');
+import fs from "fs";
+const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
 
 exports.removeBackground = async (req, res) => {
   try {
@@ -17,3 +19,24 @@ exports.removeBackground = async (req, res) => {
     res.status(500).json({ error: error.message });
   }
 };
+
+exports.generateBackground = async(req, res) =>{
+  try{
+    const originalImagePath = path.join(__dirname, "../public/uploads/original.png");
+    const maskImagePath = path.join(__dirname, "../public/processed/xyz.png");
+    const response = await openai.images.edit({
+    model: "gpt-image-1",  
+    prompt: req.body.prompt,
+    image: [fs.createReadStream(originalImagePath)],   // Your original image
+    mask: fs.createReadStream(maskImagePath),       // Transparent background image
+    size: "1024x1024"  
+  });
+
+  // Save the new image
+  const image_base64 = response.data[0].b64_json;
+  fs.writeFileSync("output.png", Buffer.from(image_base64, "base64"));
+}catch{
+
+}
+  
+}
