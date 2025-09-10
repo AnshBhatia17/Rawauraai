@@ -1,3 +1,6 @@
+// remove bg
+//add bg by prompt
+
 const backgroundService = require('../services/backgraoundService');
 import fs from "fs";
 const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });

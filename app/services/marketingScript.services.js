@@ -1,3 +1,4 @@
+// openAi api for marketing script generation
 const { OpenAI } = require("openai");
 
 const openai = new OpenAI({
